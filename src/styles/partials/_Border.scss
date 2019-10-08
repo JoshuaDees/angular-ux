@@ -1,0 +1,37 @@
+/* Border */
+
+.ui-border {
+  border: 1px solid $color-black;
+
+  &-top {
+    border-top: 1px solid $color-black;
+
+    &-thick {
+      border-top-width: 4px;
+    }
+  }
+
+  &-left {
+    border-left: 1px solid $color-black;
+
+    &-thick {
+      border-left-width: 4px;
+    }
+  }
+
+  &-right {
+    border-right: 1px solid $color-black;
+
+    &-thick {
+      border-right-width: 4px;
+    }
+  }
+
+  &-bottom {
+    border-bottom: 1px solid $color-black;
+
+    &-thick {
+      border-bottom-width: 4px;
+    }
+  }
+}

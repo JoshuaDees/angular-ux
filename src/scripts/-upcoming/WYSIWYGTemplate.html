@@ -1,0 +1,106 @@
+<div class="ui-rows">
+  <div class="ui-border-bottom ui-cols ui-toolbar">
+    <div class="ui-rows">
+      <div class="ui-cols">
+        <button class="ui-button ui-flex-3" title="Font" ux-dropdown="exec('fontName', value)">
+          Font
+          <ul class="ux-menu">
+            <ux-menuitem value="Arial" style="font-family: 'Arial';">Arial</ux-menuitem>
+            <ux-menuitem value="Courier New" style="font-family: 'Courier New';">Courier New</ux-menuitem>
+            <ux-menuitem value="Georgia" style="font-family: 'Georgia';">Georgia</ux-menuitem>
+            <ux-menuitem value="Helvetica" style="font-family: 'Helvetica';">Helvetica</ux-menuitem>
+            <ux-menuitem value="Times New Roman" style="font-family: 'Times New Roman';">Times New Roman</ux-menuitem>
+            <ux-menuitem value="Verdana" style="font-family: 'Verdana';">Verdana</ux-menuitem>
+          </ul>
+        </button>
+        <button class="ui-button ui-flex-2" title="Font Size" ux-dropdown="exec('fontSize', value)">
+          Size
+          <ul class="ux-menu">
+            <ux-menuitem value="1">8pt</ux-menuitem>
+            <ux-menuitem value="2">10pt</ux-menuitem>
+            <ux-menuitem value="3">12pt</ux-menuitem>
+            <ux-menuitem value="4">14pt</ux-menuitem>
+            <ux-menuitem value="5">18pt</ux-menuitem>
+            <ux-menuitem value="6">24pt</ux-menuitem>
+            <ux-menuitem value="7">36pt</ux-menuitem>
+          </ul>
+        </button>
+        <button class="ui-button ui-flex-3" title="Font Size" ux-dropdown="exec('formatBlock', value)">
+          Format
+          <ul class="ux-menu">
+            <ux-menuitem value="<p>">Paragraph</ux-menuitem>
+            <ux-menuitem value="<h1>" style="font-weight: bold;">Heading 1</ux-menuitem>
+            <ux-menuitem value="<h2>" style="font-weight: bold;">Heading 2</ux-menuitem>
+            <ux-menuitem value="<h3>" style="font-weight: bold;">Heading 3</ux-menuitem>
+            <ux-menuitem value="<h4>" style="font-weight: bold;">Heading 4</ux-menuitem>
+            <ux-menuitem value="<h5>" style="font-weight: bold;">Heading 5</ux-menuitem>
+            <ux-menuitem value="<h6>" style="font-weight: bold;">Heading 6</ux-menuitem>
+            <ux-menuitem value="<pre>" style="font-family: 'Courier New';">Preformatted</ux-menuitem>
+          </ul>
+        </button>
+      </div>
+      <div class="ui-cols">
+        <button class="ui-button" ng-click="exec('bold')" title="Bold"><i class="fa fa-bold"></i></button>
+        <button class="ui-button" ng-click="exec('italic')" title="Italic"><i class="fa fa-italic"></i></button>
+        <button class="ui-button" ng-click="exec('underline')" title="Underline"><i class="fa fa-underline"></i></button>
+        <button class="ui-button" ng-click="exec('strikethrough')" title="Strikethrough"><i class="fa fa-strikethrough"></i></button>
+        <button class="ui-button" ng-click="exec('subscript')" title="Subscript"><i class="fa fa-subscript"></i></button>
+        <button class="ui-button" ng-click="exec('superscript')" title="Superscript"><i class="fa fa-superscript"></i></button>
+        <hr />
+        <button class="ui-button" title="Font Color" ux-dropdown="exec(['foreColor'], value)">
+          <i class="fa fa-paint-brush"></i>
+          <ul class="ux-menu">
+            <ux-color-picker></ux-color-picker>
+          </ul>
+        </button>
+        <button class="ui-button" title="Background Color" ux-dropdown="exec(['hiliteColor', 'backColor'], value)">
+          <i class="fa fa-fill-drip"></i>
+          <ul class="ux-menu">
+            <ux-color-picker></ux-color-picker>
+          </ul>
+        </button>
+      </div>
+      <div class="ui-spacing ui-text-center ui-text-xs">Font</div>
+    </div>
+    <hr />
+    <div class="ui-rows">
+      <div class="ui-cols">
+        <button class="ui-button" ng-click="exec('insertunOrderedList')" title="Create Bulleted List"><i class="fa fa-list-ul"></i></button>
+        <button class="ui-button" ng-click="exec('insertOrderedList')" title="Create Ordered List"><i class="fa fa-list-ol"></i></button>
+        <hr />
+        <button class="ui-button" ng-click="exec('outdent')" title="Decrease Indent"><i class="fa fa-outdent"></i></button>
+        <button class="ui-button" ng-click="exec('indent')" title="Increase Indent"><i class="fa fa-indent"></i></button>
+      </div>
+      <div class="ui-cols">
+        <button class="ui-button" ng-click="exec('justifyLeft')" title="Align Left"><i class="fa fa-align-left"></i></button>
+        <button class="ui-button" ng-click="exec('justifyCenter')" title="Align Center"><i class="fa fa-align-center"></i></button>
+        <button class="ui-button" ng-click="exec('justifyRight')" title="Align Right"><i class="fa fa-align-right"></i></button>
+        <button class="ui-button" ng-click="exec('justifyFull')" title="Justify"><i class="fa fa-align-justify"></i></button>
+      </div>
+      <div class="ui-spacing ui-text-center ui-text-xs">Paragraph</div>
+    </div>
+    <hr />
+    <div class="ui-rows">
+      <div class="ui-cols">
+        <button class="ui-button" ng-click="exec('insertHorizontalRule')" title="Insert Horizontal Rule"><i class="fa fa-minus"></i></button>
+        <button class="ui-button" ng-click="link()" title="Insert Link"><i class="fa fa-link"></i></button>
+        <button class="ui-button" ng-click="exec('unlink')" title="Remove Link"><i class="fa fa-unlink"></i></button>
+      </div>
+      <div class="ui-cols">
+        <button class="ui-button" ng-click="symbol()" title="Insert Symbol"><i class="fa fa-dollar-sign"></i></button>
+        <button class="ui-button" ng-click="image()" title="Insert Image"><i class="fa fa-image"></i></button>
+        <button class="ui-button" ng-click="table()" title="Insert Table"><i class="fa fa-table"></i></button>
+      </div>
+      <div class="ui-spacing ui-text-center ui-text-xs">Insert</div>
+    </div>
+    <hr />
+  </div>
+  <div class="ui-editable ui-flex ui-padding-left-double ui-padding-right-double" contenteditable ng-transclude ng-model="source" style="font-family: Verdana; font-size: 10pt;"></div>
+  <div class="ui-border-top ui-cols">
+    <div class="ui-flex"></div>
+    <div class="ui-border-left ui-padding ui-padding-left-double ui-padding-right-double ui-text-s">Length: {{ source.length }}</div>
+  </div>
+  <div class="ui-border-top ui-toolbar">
+    <button class="ui-button" ng-click="log()">View Source</button>
+  </div>
+</div>

@@ -1,0 +1,46 @@
+/* Buttons */
+
+.ui-button {
+  background-color: $color-grey-light;
+  border: 1px solid $color-grey-light;
+  border-radius: 4px;
+  display: inline-flex;
+  flex-direction: row;
+  font: 500 $font-size-s $font-family-text;
+  justify-content: space-between;
+  line-height: 22px;
+  min-height: 28px;
+  min-width: 28px;
+  padding: 2px 6px;
+  text-align: center;
+
+  &:hover {
+    border: 1px solid $color-black;
+  }
+
+  &:active,
+  &.ui-pressed {
+    background-color: $color-grey-medium;
+    border: 1px solid $color-black;
+  }
+
+  &:focus {
+    outline: none;
+  }
+
+  > .fa {
+    display: inline-block;
+    height: 22px;
+    line-height: 22px;
+    margin: 0 -4px;
+    width: 22px;
+  }
+
+  &[ux-dropdown]::after {
+    content: "\f0dd";
+    font: 900 $font-size-s $font-family-icon;
+    height: 22px;
+    line-height: 16px;
+    margin-left: 8px;
+  }
+}

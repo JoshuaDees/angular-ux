@@ -1,0 +1,10 @@
+// Global Styles
+
+* {
+  box-sizing: border-box;
+}
+
+:not(input):not(textarea) {
+  cursor: default;
+  user-select: none;
+}

@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Angular-UX - RTF Editor</title>
+    <link rel="stylesheet" href="../assets/font-awesome/css/font-awesome.css" />
+    <script src="../assets/angular/angular.js"></script>
+    <script src="../assets/angular/angular-sanitize.js"></script>
+    <link rel="stylesheet" href="../dist/angular-ux.css" />
+    <script src="../dist/angular-ux.js"></script>
+    <style> * { box-sizing: border-box; } </style>
+    <script> angular.module('angular-ux-tests', ['angular-ux']); </script>
+  </head>
+  <body ng-app="angular-ux-tests">
+    <div ux-wysiwyg class="ui-border ui-border-top-thick" style="height: 480px; width: 620px;">
+      <h1>Heading 1</h1>
+      <h2>Heading 2</h2>
+      <h3>Heading 3</h3>
+      <h4>Heading 4</h4>
+      <h5>Heading 5</h5>
+      <h6>Heading 6</h6>
+      <p>Paragraph</p>
+      <pre>Preformatted Text</pre>
+    </div>
+  </body>
+</html>

@@ -1,0 +1,59 @@
+/* Layout */
+
+.ui-rows {
+  display: flex;
+  flex-direction: column;
+}
+
+.ui-columns, .ui-cols {
+  display: flex;
+  flex-direction: row;
+}
+
+.ui-flex {
+  flex: 1;
+
+  &-2 {
+    flex: 2;
+  }
+
+  &-3 {
+    flex: 3;
+  }
+
+  &-4 {
+    flex: 4;
+  }
+
+  &-5 {
+    flex: 5;
+  }
+
+  &-6 {
+    flex: 6;
+  }
+
+  &-7 {
+    flex: 7;
+  }
+
+  &-8 {
+    flex: 8;
+  }
+
+  &-9 {
+    flex: 9;
+  }
+
+  &-10 {
+    flex: 10;
+  }
+
+  &-11 {
+    flex: 11;
+  }
+
+  &-12 {
+    flex: 12;
+  }
+}

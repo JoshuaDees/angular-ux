@@ -1,0 +1,32 @@
+.ux-menu {
+  background: $color-white;
+  border: 1px solid $color-black;
+  cursor: default;
+  list-style: none;
+  margin: 0;
+  outline: none;
+  overflow-y: auto;
+  padding: 0;
+  position: absolute;
+  user-select: none;
+
+  .ux-menuitem {
+    font: 500 $font-size-s $font-family-text;
+    line-height: 28px;
+    padding: 0 4px;
+
+    &[selected] {
+      background-color: $color-grey-medium;
+    }
+
+    &:hover {
+      background-color: $color-grey-light;
+    }
+  }
+}
+
+[ux-dropdown] {
+  .ux-menu {
+    display: none;
+  }
+}

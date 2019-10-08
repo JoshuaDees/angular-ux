@@ -1,0 +1,81 @@
+/* Padding and Spacing */
+
+.ui-padding {
+  padding: 4px;
+
+  &-double {
+    padding: 8px;
+  }
+
+  &-bottom {
+    padding-bottom: 4px;
+
+    &-double {
+      padding-bottom: 8px;
+    }
+  }
+
+  &-left {
+    padding-left: 4px;
+
+    &-double {
+      padding-left: 8px;
+    }
+  }
+
+  &-right {
+    padding-right: 4px;
+
+    &-double {
+      padding-right: 8px;
+    }
+  }
+
+  &-top {
+    padding-top: 4px;
+
+    &-double {
+      padding-top: 8px;
+    }
+  }
+}
+
+.ui-spacing {
+  margin: 4px;
+
+  &-double {
+    margin: 8px;
+  }
+
+  &-bottom {
+    margin-bottom: 4px;
+
+    &-double {
+      margin-bottom: 8px;
+    }
+  }
+
+  &-left {
+    margin-left: 4px;
+
+    &-double {
+      margin-left: 8px;
+    }
+  }
+
+  &-right {
+    margin-right: 4px;
+
+    &-double {
+      margin-right: 8px;
+    }
+  }
+
+  &-top {
+    margin-top: 4px;
+
+    &-double {
+      margin-top: 8px;
+    }
+  }
+}

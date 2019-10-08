@@ -1,0 +1,29 @@
+{
+  "name": "angular-ux",
+  "version": "1.0.0",
+  "description": "Angular UX (User Experience) Components",
+  "main": "dist/angular-ux.js",
+  "repository": "https://github.com/JoshuaDees/angular-ux.git",
+  "author": "Joshua Dees <dees.joshua@gmail.com>",
+  "license": "ISC",
+  "scripts": {},
+  "dependencies": {
+    "@fortawesome/fontawesome-free": "^5.11.1",
+    "angular": "^1.7.8",
+    "angular-sanitize": "^1.7.8",
+    "jquery": "^3.4.1"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.6.0",
+    "@babel/preset-env": "^7.6.0",
+    "grunt": "^1.0.4",
+    "grunt-angular-builder": "^2.0.0",
+    "grunt-angular-templates": "^1.2.0",
+    "grunt-babel": "^8.0.0",
+    "grunt-contrib-clean": "^2.0.0",
+    "grunt-contrib-cssmin": "^3.0.0",
+    "grunt-contrib-sass": "^1.0.0",
+    "grunt-contrib-uglify": "^4.0.1",
+    "grunt-contrib-watch": "^1.1.0"
+  }
+}

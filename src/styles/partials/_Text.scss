@@ -1,0 +1,38 @@
+/* Text */
+
+.ui-text-xsmall, .ui-text-xs {
+  font-family: $font-family-text;
+  font-size: $font-size-xs;
+}
+
+.ui-text-small, .ui-text-s {
+  font-family: $font-family-text;
+  font-size: $font-size-s;
+}
+
+.ui-text-medium, .ui-text-m {
+  font-family: $font-family-text;
+  font-size: $font-size-m;
+}
+
+.ui-text-large, .ui-text-l {
+  font-family: $font-family-text;
+  font-size: $font-size-l;
+}
+
+.ui-text-xlarge, .ui-text-xl {
+  font-family: $font-family-text;
+  font-size: $font-size-xl;
+}
+
+.ui-text-left {
+  text-align: left;
+}
+
+.ui-text-center {
+  text-align: center;
+}
+
+.ui-text-right {
+  text-align: right;
+}

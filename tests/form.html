@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Angular-UX - Form Elements</title>
+    <link rel="stylesheet" href="../assets/font-awesome/css/font-awesome.css" />
+    <script src="../assets/jquery/jquery.js"></script>
+    <script src="../assets/angular/angular.js"></script>
+    <script src="../assets/angular/angular-sanitize.js"></script>
+    <link rel="stylesheet" href="../dist/angular-ux.css" />
+    <script src="../dist/angular-ux.js"></script>
+    <style>
+      .examples { border: 1px solid rgb(220, 220, 220); font: 500 10pt Verdana; }
+      .examples > div { padding: 2px 0; }
+      .examples > div > label { display: inline-block; width: 160px; }
+      .examples > div > label + * { width: 160px; }
+
+      .ux-combobox { width: 160px; }
+    </style>
+    <script> angular.module('angular-ux-tests', ['angular-ux']); </script>
+  </head>
+  <body ng-app="angular-ux-tests">
+    <fieldset class="examples">
+      <legend>Comboboxes</legend>
+      <div>
+        <label>Standard Combobox:</label>
+        <ux-combobox name="combobox-standard">
+          <ux-option value="1st">First</ux-option>
+          <ux-option value="2nd">Second</ux-option>
+          <ux-option value="3rd">Third</ux-option>
+          <ux-option value="4th">Fourth</ux-option>
+        </ux-combobox>
+      </div>
+      <div>
+        <label>Placeholder:</label>
+        <ux-combobox placeholder="Select One...">
+          <ux-option value="1st">First</ux-option>
+          <ux-option value="2nd">Second</ux-option>
+          <ux-option value="3rd">Third</ux-option>
+          <ux-option value="4th">Fourth</ux-option>
+        </ux-combobox>
+      </div>
+      <div>
+        <label>Initial Selection:</label>
+        <ux-combobox>
+          <ux-option value="1st" selected>First</ux-option>
+          <ux-option value="2nd">Second</ux-option>
+          <ux-option value="3rd">Third</ux-option>
+          <ux-option value="4th">Fourth</ux-option>
+        </ux-combobox>
+      </div>
+      <div>
+        <label>Multi-Select:</label>
+        <ux-combobox ux-multi-select>
+          <ux-option value="1st">First</ux-option>
+          <ux-option value="2nd">Second</ux-option>
+          <ux-option value="3rd">Third</ux-option>
+          <ux-option value="4th">Fourth</ux-option>
+        </ux-combobox>
+      </div>
+      <div>
+        <label>Editable Combobox:</label>
+        <ux-combobox ux-editable>
+          <ux-option value="1st">First</ux-option>
+          <ux-option value="2nd">Second</ux-option>
+          <ux-option value="3rd">Third</ux-option>
+          <ux-option value="4th">Fourth</ux-option>
+        </ux-combobox>
+      </div>
+      <div>
+        <label>Placeholder:</label>
+        <ux-combobox placeholder="Select One..." ux-editable>
+          <ux-option value="1st">First</ux-option>
+          <ux-option value="2nd">Second</ux-option>
+          <ux-option value="3rd">Third</ux-option>
+          <ux-option value="4th">Fourth</ux-option>
+        </ux-combobox>
+      </div>
+      <div>
+        <label>Initial Selection:</label>
+        <ux-combobox placeholder="Select One..." ux-editable>
+          <ux-option value="1st" selected>First</ux-option>
+          <ux-option value="2nd">Second</ux-option>
+          <ux-option value="3rd">Third</ux-option>
+          <ux-option value="4th">Fourth</ux-option>
+        </ux-combobox>
+      </div>
+    </fieldset>
+  </body>
+</html>

@@ -1,0 +1,53 @@
+.ux-combobox {
+  background-color: $color-white;
+  border: 1px solid $color-grey-dark;
+  display: inline-flex;
+  line-height: 24px;
+  overflow: hidden;
+
+  .ux-combobox-value {
+    border: 0 none;
+    font: 500 $font-size-s $font-family-text;
+    line-height: 24px;
+    margin: 0 4px;
+    min-height: 24px;
+    outline: none;
+    overflow: hidden;
+    padding: 0;
+    width: 100%;
+
+    &[readonly] {
+      cursor: default;
+      user-select: none;
+    }
+  }
+
+  .ux-trigger {
+    line-height: 18px;
+    padding: 0 6px;
+
+    &::after {
+      content: "\f0dd";
+      font: 900 10pt "Font Awesome 5 Free";
+    }
+  }
+
+  &[ux-editable] .ux-trigger {
+    border-left: 1px solid $color-grey-dark;
+  }
+
+  &:hover,
+  &.ui-pressed {
+    border: 1px solid $color-black;
+
+    &[ux-editable] .ux-trigger {
+      border-left: 1px solid $color-black;
+    }
+  }
+
+  &:focus,
+  &.ui-pressed {
+    box-shadow: 0 0 4px $color-outline;
+    outline: none;
+  }
+}
