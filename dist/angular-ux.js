@@ -137,7 +137,7 @@
      */
     $scope.cancelOpen = function (event) {
       // If the combobox is editable, stop the default event propagation
-      if ($scope.options.editable) {
+      if ($scope.editableService) {
         event.stopPropagation();
       }
     };
