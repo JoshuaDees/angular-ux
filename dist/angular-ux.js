@@ -129,7 +129,7 @@
    * @name ux.angular.controller:Combobox
    *
    * @description
-   *   Defines the controller that runs the {@link angular-ux.directive:uxCombobox Combobox} directive.
+   *  Defines the controller that runs the {@link angular-ux.directive:uxCombobox Combobox} directive.
    */
   .controller('Combobox', ['$scope', '$element', 'ComboboxSingleSelect', function ($scope, $element, ComboboxSingleSelect) {
     /**
@@ -196,7 +196,7 @@
    * @name ux.angular.directive:uxCombobox
    *
    * @description
-   *   Defines the Combobox directive.
+   *  Defines the Combobox directive.
      * @example
    *
    *  <ux-combobox [name] [ng-model="{model}"] [placeholder="{placeholder}"] [required] [ux-combobox-editable] [ux-combobox-multiselect]>
@@ -220,7 +220,15 @@
   // File: src/scripts/form/field/combobox/Option.es6
   //--------------------------------------------------------------------------------------------------------------------
 
-  module.directive('uxOption', function () {
+  module
+  /**
+   * @ngdoc directive
+   * @name ux.angular.directive:uxOption
+   *
+   * @description
+   *  // TODO:
+   */
+  .directive('uxOption', function () {
     return {
       link: function link($scope, $element, $attributes) {
         if ($attributes.selected !== undefined) {
@@ -236,9 +244,25 @@
   // File: src/scripts/form/field/combobox/editable/ComboboxEditable.es6
   //--------------------------------------------------------------------------------------------------------------------
 
-  module.service('ComboboxEditable', function () {
+  module
+  /**
+   * @ngdoc service
+   * @name ux.angular.service:ComboboxEditable
+   *
+   * @description
+   *  // TODO:
+   */
+  .service('ComboboxEditable', function () {
     return function ($scope) {};
-  }).directive('uxComboboxEditable', ['ComboboxEditable', function (ComboboxEditable) {
+  })
+  /**
+   * @ngdoc directive
+   * @name ux.angular.directive:uxComboboxEditable
+   *
+   * @description
+   *  // TODO:
+   */
+  .directive('uxComboboxEditable', ['ComboboxEditable', function (ComboboxEditable) {
     return {
       link: function link($scope, $element, $attributes, $controller) {
         return $controller.setEditableService(ComboboxEditable);
@@ -251,7 +275,15 @@
   // File: src/scripts/form/field/combobox/selection/ComboboxMultiSelect.es6
   //--------------------------------------------------------------------------------------------------------------------
 
-  module.service('ComboboxMultiSelect', function () {
+  module
+  /**
+   * @ngdoc service
+   * @name ux.angular.service:ComboboxMultiSelect
+   *
+   * @description
+   *  // TODO:
+   */
+  .service('ComboboxMultiSelect', function () {
     return function ($scope, itemSelector) {
       var _this = this;
 
@@ -302,7 +334,15 @@
         }
       };
     };
-  }).directive('uxCOmboboxMultiselect', ['ComboboxMultiSelect', function (ComboboxMultiSelect) {
+  })
+  /**
+   * @ngdoc directive
+   * @name ux.angular.directive:uxComboboxMultiselect
+   *
+   * @description
+   *  // TODO:
+   */
+  .directive('uxComboboxMultiselect', ['ComboboxMultiSelect', function (ComboboxMultiSelect) {
     return {
       link: function link($scope, $element, $attributes, $controller) {
         return $controller.setSelectService(ComboboxMultiSelect);
@@ -315,7 +355,15 @@
   // File: src/scripts/form/field/combobox/selection/ComboboxSingleSelect.es6
   //--------------------------------------------------------------------------------------------------------------------
 
-  module.service('ComboboxSingleSelect', function () {
+  module
+  /**
+   * @ngdoc service
+   * @name ux.angular.service:ComboboxSingleSelect
+   *
+   * @description
+   *  // TODO:
+   */
+  .service('ComboboxSingleSelect', function () {
     return function ($scope) {
       var _this2 = this;
 

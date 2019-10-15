@@ -1,5 +1,13 @@
 angular
   .module('ux.angular')
+
+  /**
+   * @ngdoc service
+   * @name ux.angular.service:ComboboxMultiSelect
+   *
+   * @description
+   *  // TODO:
+   */
   .service('ComboboxMultiSelect', () => {
     return function($scope, itemSelector) {
       let selected = [];
@@ -55,7 +63,15 @@ angular
       };
     };
   })
-  .directive('uxCOmboboxMultiselect', ['ComboboxMultiSelect', (ComboboxMultiSelect) => {
+
+  /**
+   * @ngdoc directive
+   * @name ux.angular.directive:uxComboboxMultiselect
+   *
+   * @description
+   *  // TODO:
+   */
+  .directive('uxComboboxMultiselect', ['ComboboxMultiSelect', (ComboboxMultiSelect) => {
     return {
       link: ($scope, $element, $attributes, $controller) => $controller.setSelectService(ComboboxMultiSelect),
       priority: 1,

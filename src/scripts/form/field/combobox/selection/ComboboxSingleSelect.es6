@@ -1,5 +1,13 @@
 angular
   .module('ux.angular')
+
+  /**
+   * @ngdoc service
+   * @name ux.angular.service:ComboboxSingleSelect
+   *
+   * @description
+   *  // TODO:
+   */
   .service('ComboboxSingleSelect', () => {
     return function($scope) {
       this.model = {

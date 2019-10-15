@@ -1,11 +1,12 @@
 angular
   .module('ux.angular')
+
   /**
    * @ngdoc controller
    * @name ux.angular.controller:Combobox
    *
    * @description
-   *   Defines the controller that runs the {@link angular-ux.directive:uxCombobox Combobox} directive.
+   *  Defines the controller that runs the {@link angular-ux.directive:uxCombobox Combobox} directive.
    */
 .controller('Combobox', [
     '$scope',
@@ -69,12 +70,13 @@ angular
     // Return the scope
     return $scope;
   }])
+
   /**
    * @ngdoc directive
    * @name ux.angular.directive:uxCombobox
    *
    * @description
-   *   Defines the Combobox directive.
+   *  Defines the Combobox directive.
 
    * @example
    *
