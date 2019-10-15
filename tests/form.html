@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" ng-app="angular-ux-tests">
   <head>
     <meta charset="UTF-8" />
     <title>Angular-UX - Form Elements</title>
@@ -17,74 +17,85 @@
 
       .ux-combobox { width: 160px; }
     </style>
-    <script> angular.module('angular-ux-tests', ['angular-ux']); </script>
+    <script>
+      angular
+        .module('angular-ux-tests', ['angular-ux'])
+        .controller('testController', ['$scope', ($scope) => {}]);
+    </script>
   </head>
-  <body ng-app="angular-ux-tests">
+  <body ng-controller="testController">
     <fieldset class="examples">
       <legend>Comboboxes</legend>
       <div>
         <label>Standard Combobox:</label>
-        <ux-combobox name="combobox-standard">
+        <ux-combobox ng-model="combobox_standard" name="combobox-standard">
           <ux-option value="1st">First</ux-option>
           <ux-option value="2nd">Second</ux-option>
           <ux-option value="3rd">Third</ux-option>
           <ux-option value="4th">Fourth</ux-option>
         </ux-combobox>
+        <span>Value: [{{ combobox_standard }}]</span>
       </div>
       <div>
         <label>Placeholder:</label>
-        <ux-combobox placeholder="Select One...">
+        <ux-combobox ng-model="combobx_standard_placeholder" placeholder="Select One...">
           <ux-option value="1st">First</ux-option>
           <ux-option value="2nd">Second</ux-option>
           <ux-option value="3rd">Third</ux-option>
           <ux-option value="4th">Fourth</ux-option>
         </ux-combobox>
+        <span>Value: [{{ combobx_standard_placeholder }}]</span>
       </div>
       <div>
         <label>Initial Selection:</label>
-        <ux-combobox>
-          <ux-option value="1st" selected>First</ux-option>
+        <ux-combobox ng-model="combobox_standard_initial">
+          <ux-option value="1st">First</ux-option>
           <ux-option value="2nd">Second</ux-option>
-          <ux-option value="3rd">Third</ux-option>
+          <ux-option value="3rd" selected>Third</ux-option>
           <ux-option value="4th">Fourth</ux-option>
         </ux-combobox>
+        <span>Value: [{{ combobox_standard_initial }}]</span>
       </div>
-      <div>
+      <!-- div>
         <label>Multi-Select:</label>
-        <ux-combobox ux-multi-select>
+        <ux-combobox ng-model="combobox_standard_multiselect" ux-multi-select>
           <ux-option value="1st">First</ux-option>
           <ux-option value="2nd">Second</ux-option>
           <ux-option value="3rd">Third</ux-option>
           <ux-option value="4th">Fourth</ux-option>
         </ux-combobox>
+        <span>Value: [{{ combobox_standard_multiselect }}]</span>
       </div>
       <div>
         <label>Editable Combobox:</label>
-        <ux-combobox ux-editable>
+        <ux-combobox ng-model="combobox_editable" ux-editable>
           <ux-option value="1st">First</ux-option>
           <ux-option value="2nd">Second</ux-option>
           <ux-option value="3rd">Third</ux-option>
           <ux-option value="4th">Fourth</ux-option>
         </ux-combobox>
+        <span>Value: [{{ combobox_editable }}]</span>
       </div>
       <div>
         <label>Placeholder:</label>
-        <ux-combobox placeholder="Select One..." ux-editable>
+        <ux-combobox ng-model="combobox_editable_placeholder" placeholder="Select One..." ux-editable>
           <ux-option value="1st">First</ux-option>
           <ux-option value="2nd">Second</ux-option>
           <ux-option value="3rd">Third</ux-option>
           <ux-option value="4th">Fourth</ux-option>
         </ux-combobox>
+        <span>Value: [{{ combobox_editable_placeholder }}]</span>
       </div>
       <div>
         <label>Initial Selection:</label>
-        <ux-combobox placeholder="Select One..." ux-editable>
+        <ux-combobox ng-model="combobox_editable_initial" placeholder="Select One..." ux-editable>
           <ux-option value="1st" selected>First</ux-option>
           <ux-option value="2nd">Second</ux-option>
           <ux-option value="3rd">Third</ux-option>
           <ux-option value="4th">Fourth</ux-option>
         </ux-combobox>
-      </div>
+        <span>Value: [{{ combobox_editable_initial }}]</span>
+      </div -->
     </fieldset>
   </body>
 </html>

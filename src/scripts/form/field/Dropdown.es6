@@ -107,7 +107,6 @@ angular
     return {
       controller: 'DropdownController',
       link: ($scope, $element, $attributes) => $scope.init($element, $attributes),
-      restrict: 'A',
-      scope: true
+      restrict: 'A'
     };
   });

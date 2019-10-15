@@ -1,12 +1,23 @@
 angular
   .module('angular-ux')
-  .controller('uxComboboxController', ['$scope', 'ComboboxSingleSelect', ($scope, ComboboxSingleSelect) => {
+  .controller('ComboboxController', [
+    '$scope',
+    '$element',
+    'ComboboxSingleSelect',
+  (
+    $scope,
+    $element,
+    ComboboxSingleSelect
+  ) => {
     // Define some scope variables
     $scope.attributes = {};
     $scope.model = {};
     $scope.options = {};
 
-    // Define some scope services
+    // Declare some additional directives
+    $scope.ngModel = null;
+
+    // Declare some additional services
     $scope.selectService = null;
 
     /**
@@ -22,9 +33,12 @@ angular
     /**
      * Initializes the controller.
      */
-    $scope.initialize = (attributes) => {
+    $scope.initialize = (attributes, ngModel) => {
       // Store the attributes to the scope
       $scope.attributes = attributes;
+
+      // Store the ng-model controller
+      $scope.ngModel = ngModel;
     };
 
     /**
@@ -34,23 +48,34 @@ angular
       // Select the item using the select service
       $scope.selectService.select(menu, item);
 
+      // Update the ng-model if defined
+      if ($scope.ngModel) {
+        $scope.ngModel.$setViewValue($scope.model.value);
+      }
+
       // Apply the changes if needed
       apply && $scope.$apply();
     };
 
+    /**
+     * Sets the select service.
+     */
     $scope.setSelectService = (selectService) => {
+      // Set the new select service.
       $scope.selectService = new selectService($scope, '.ux-menuitem');
     };
 
-    $scope.setSelectService(ComboboxSingleSelect, '.ux-menuitem');
+    // Set the necessary services
+    $scope.setSelectService(ComboboxSingleSelect);
   }])
   .directive('uxCombobox', () => {
     return {
-      controller: 'uxComboboxController',
-      link: ($scope, $element, $attributes) => $scope.initialize($attributes),
+      controller: 'ComboboxController',
+      link: ($scope, $element, $attributes, ngModel) => $scope.initialize($attributes, ngModel),
       replace: true,
+      require: '?ngModel',
       restrict: 'E',
-      scope: true,
+      scope: {},
       templateUrl: 'form/field/combobox/Combobox',
       transclude: true
     };
