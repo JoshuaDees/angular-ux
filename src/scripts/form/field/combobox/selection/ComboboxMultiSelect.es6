@@ -9,16 +9,15 @@ angular
    *  // TODO:
    */
   .service('ComboboxMultiSelect', () => {
-    return function($scope, itemSelector) {
-      let selected = [];
-      let values = [];
+    return class {
+      constructor() {
+        this.model = {
+          value: undefined,
+          text: undefined
+        };
+      }
 
-      this.model = {
-        value: undefined,
-        text: undefined
-      };
-
-      this.select = (menu, item) => {
+      select(menu, item) {
         // Toggle the selected attribute of the item
         if (item.attr('selected')) {
           item.removeAttr('selected');
@@ -27,11 +26,11 @@ angular
         }
 
         // Reset the selected items lists
-        selected = [];
-        values = [];
+        let selected = [];
+        let values = [];
 
         // Find the items in the list
-        let items = menu.find(itemSelector);
+        let items = menu.find(this.itemSelector);
 
         // Update the selected items lists
         items.filter('[selected]').each((index, item) => {
@@ -73,7 +72,7 @@ angular
    */
   .directive('uxComboboxMultiselect', ['ComboboxMultiSelect', (ComboboxMultiSelect) => {
     return {
-      link: ($scope, $element, $attributes, $controller) => $controller.setSelectService(ComboboxMultiSelect),
+      link: ($scope, $element, $attributes, $controller) => $controller.setSelectService(new ComboboxMultiSelect()),
       priority: 1,
       require: 'uxCombobox',
       restrict: 'A'

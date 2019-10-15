@@ -9,7 +9,7 @@ angular
    *  // TODO:
    */
   .service('ComboboxEditable', () => {
-    return function($scope) {};
+    return function() {};
   })
 
   /**
@@ -21,7 +21,7 @@ angular
    */
   .directive('uxComboboxEditable', ['ComboboxEditable', (ComboboxEditable) => {
     return {
-      link: ($scope, $element, $attributes, $controller) => $controller.setEditableService(ComboboxEditable),
+      link: ($scope, $element, $attributes, $controller) => $controller.setEditableService(new ComboboxEditable()),
       priority: 1,
       require: 'uxCombobox',
       restrict: 'A'

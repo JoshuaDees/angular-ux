@@ -9,13 +9,15 @@ angular
    *  // TODO:
    */
   .service('ComboboxSingleSelect', () => {
-    return function($scope) {
-      this.model = {
-        value: undefined,
-        text: undefined
-      };
+    return class {
+      constructor() {
+        this.model = {
+          value: undefined,
+          text: undefined
+        };
+      }
 
-      this.select = (menu, item) => {
+      select(menu, item) {
         // Update the model
         this.model.value = item.attr('value');
         this.model.text = item.html();

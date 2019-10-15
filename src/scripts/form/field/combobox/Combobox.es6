@@ -57,15 +57,21 @@ angular
     /**
      * Sets the editable service.
      */
-    $scope.setEditableService = (editableService) => $scope.editableService = new editableService($scope);
+    $scope.setEditableService = (editableService) => $scope.editableService = editableService;
 
     /**
      * Sets the select service.
      */
-    $scope.setSelectService = (selectService) => $scope.selectService = new selectService($scope, '.ux-menuitem');
+    $scope.setSelectService = (selectService) => {
+      // Set the select service's item selector
+      selectService.itemSelector = '.ux-menuitem';
+
+      // Set the select service
+      $scope.selectService = selectService;
+    };
 
     // Set the necessary services
-    $scope.setSelectService(ComboboxSingleSelect);
+    $scope.setSelectService(new ComboboxSingleSelect());
 
     // Return the scope
     return $scope;

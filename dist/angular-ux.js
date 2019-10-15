@@ -1,5 +1,11 @@
 "use strict";
 
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
 //====================================================================================================================
 // Module:    ux.angular
 // Optimized: Yes
@@ -175,7 +181,7 @@
 
 
     $scope.setEditableService = function (editableService) {
-      return $scope.editableService = new editableService($scope);
+      return $scope.editableService = editableService;
     };
     /**
      * Sets the select service.
@@ -183,11 +189,14 @@
 
 
     $scope.setSelectService = function (selectService) {
-      return $scope.selectService = new selectService($scope, '.ux-menuitem');
+      // Set the select service's item selector
+      selectService.itemSelector = '.ux-menuitem'; // Set the select service
+
+      $scope.selectService = selectService;
     }; // Set the necessary services
 
 
-    $scope.setSelectService(ComboboxSingleSelect); // Return the scope
+    $scope.setSelectService(new ComboboxSingleSelect()); // Return the scope
 
     return $scope;
   }])
@@ -253,7 +262,7 @@
    *  // TODO:
    */
   .service('ComboboxEditable', function () {
-    return function ($scope) {};
+    return function () {};
   })
   /**
    * @ngdoc directive
@@ -265,7 +274,7 @@
   .directive('uxComboboxEditable', ['ComboboxEditable', function (ComboboxEditable) {
     return {
       link: function link($scope, $element, $attributes, $controller) {
-        return $controller.setEditableService(ComboboxEditable);
+        return $controller.setEditableService(new ComboboxEditable());
       },
       priority: 1,
       require: 'uxCombobox',
@@ -284,56 +293,64 @@
    *  // TODO:
    */
   .service('ComboboxMultiSelect', function () {
-    return function ($scope, itemSelector) {
-      var _this = this;
+    return (
+      /*#__PURE__*/
+      function () {
+        function _class() {
+          _classCallCheck(this, _class);
 
-      var selected = [];
-      var values = [];
-      this.model = {
-        value: undefined,
-        text: undefined
-      };
-
-      this.select = function (menu, item) {
-        // Toggle the selected attribute of the item
-        if (item.attr('selected')) {
-          item.removeAttr('selected');
-        } else {
-          item.attr('selected', true);
-        } // Reset the selected items lists
-
-
-        selected = [];
-        values = []; // Find the items in the list
-
-        var items = menu.find(itemSelector); // Update the selected items lists
-
-        items.filter('[selected]').each(function (index, item) {
-          selected.push(item);
-          values.push($(item).attr('value'));
-        }); // Update the model's value
-
-        _this.model.value = values.join(', '); // Update the model's text
-
-        switch (selected.length) {
-          case 0:
-            _this.model.text = '';
-            break;
-
-          case 1:
-            _this.model.text = $(items.filter('[selected]')[0]).html();
-            break;
-
-          case items.length:
-            _this.model.text = '(All Items Selected)';
-            break;
-
-          default:
-            _this.model.text = '(Multiple Items Selected)';
-            break;
+          this.model = {
+            value: undefined,
+            text: undefined
+          };
         }
-      };
-    };
+
+        _createClass(_class, [{
+          key: "select",
+          value: function select(menu, item) {
+            // Toggle the selected attribute of the item
+            if (item.attr('selected')) {
+              item.removeAttr('selected');
+            } else {
+              item.attr('selected', true);
+            } // Reset the selected items lists
+
+
+            var selected = [];
+            var values = []; // Find the items in the list
+
+            var items = menu.find(this.itemSelector); // Update the selected items lists
+
+            items.filter('[selected]').each(function (index, item) {
+              selected.push(item);
+              values.push($(item).attr('value'));
+            }); // Update the model's value
+
+            this.model.value = values.join(', '); // Update the model's text
+
+            switch (selected.length) {
+              case 0:
+                this.model.text = '';
+                break;
+
+              case 1:
+                this.model.text = $(items.filter('[selected]')[0]).html();
+                break;
+
+              case items.length:
+                this.model.text = '(All Items Selected)';
+                break;
+
+              default:
+                this.model.text = '(Multiple Items Selected)';
+                break;
+            }
+          }
+        }]);
+
+        return _class;
+      }()
+    );
   })
   /**
    * @ngdoc directive
@@ -345,7 +362,7 @@
   .directive('uxComboboxMultiselect', ['ComboboxMultiSelect', function (ComboboxMultiSelect) {
     return {
       link: function link($scope, $element, $attributes, $controller) {
-        return $controller.setSelectService(ComboboxMultiSelect);
+        return $controller.setSelectService(new ComboboxMultiSelect());
       },
       priority: 1,
       require: 'uxCombobox',
@@ -364,25 +381,35 @@
    *  // TODO:
    */
   .service('ComboboxSingleSelect', function () {
-    return function ($scope) {
-      var _this2 = this;
+    return (
+      /*#__PURE__*/
+      function () {
+        function _class2() {
+          _classCallCheck(this, _class2);
 
-      this.model = {
-        value: undefined,
-        text: undefined
-      };
-
-      this.select = function (menu, item) {
-        // Update the model
-        _this2.model.value = item.attr('value');
-        _this2.model.text = item.html();
-
-        if (menu) {
-          menu.find('[selected]').removeAttr('selected');
-          item.attr('selected', true);
+          this.model = {
+            value: undefined,
+            text: undefined
+          };
         }
-      };
-    };
+
+        _createClass(_class2, [{
+          key: "select",
+          value: function select(menu, item) {
+            // Update the model
+            this.model.value = item.attr('value');
+            this.model.text = item.html();
+
+            if (menu) {
+              menu.find('[selected]').removeAttr('selected');
+              item.attr('selected', true);
+            }
+          }
+        }]);
+
+        return _class2;
+      }()
+    );
   }); //--------------------------------------------------------------------------------------------------------------------
   // File: src/scripts/form/field/Dropdown.es6
   //--------------------------------------------------------------------------------------------------------------------
