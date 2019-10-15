@@ -66,7 +66,7 @@
         </ux-combobox>
         <span>Value: [{{ combobox_standard_multiselect }}]</span>
       </div>
-      <!-- div>
+      <div>
         <label>Editable Combobox:</label>
         <ux-combobox ng-model="combobox_editable" ux-editable>
           <ux-option value="1st">First</ux-option>
@@ -95,7 +95,17 @@
           <ux-option value="4th">Fourth</ux-option>
         </ux-combobox>
         <span>Value: [{{ combobox_editable_initial }}]</span>
-      </div -->
+      </div>
+      <div>
+        <label>Multi-Select:</label>
+        <ux-combobox ng-model="combobox_editable_multiselect" ux-editable ux-multi-select>
+          <ux-option value="1st">First</ux-option>
+          <ux-option value="2nd">Second</ux-option>
+          <ux-option value="3rd">Third</ux-option>
+          <ux-option value="4th">Fourth</ux-option>
+        </ux-combobox>
+        <span>Value: [{{ combobox_editable_multiselect }}]</span>
+      </div>
     </fieldset>
   </body>
 </html>

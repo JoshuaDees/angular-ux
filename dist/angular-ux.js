@@ -404,8 +404,8 @@
 
   module.directive('uxEditable', [function () {
     return {
-      link: function link($scope) {
-        return $scope.options.editable = true;
+      link: function link($scope, $element, $attributes, $controller) {
+        return $controller.options.editable = true;
       },
       require: 'uxCombobox',
       restrict: 'A'
