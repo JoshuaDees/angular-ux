@@ -137,7 +137,7 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
    * @description
    *  Defines the controller that runs the {@link angular-ux.directive:uxCombobox Combobox} directive.
    */
-  .controller('Combobox', ['$scope', '$element', 'ComboboxSingleSelect', function ($scope, $element, ComboboxSingleSelect) {
+  .controller('Combobox', ['$scope', '$element', 'ComboboxSingleSelection', function ($scope, $element, ComboboxSingleSelection) {
     /**
      * Cancel opening the menu if clicking in the input and the combobox is editable.
      */
@@ -196,7 +196,7 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
     }; // Set the necessary services
 
 
-    $scope.setSelectService(new ComboboxSingleSelect()); // Return the scope
+    $scope.setSelectService(new ComboboxSingleSelection()); // Return the scope
 
     return $scope;
   }])
@@ -281,18 +281,18 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
       restrict: 'A'
     };
   }]); //--------------------------------------------------------------------------------------------------------------------
-  // File: src/scripts/form/field/combobox/selection/ComboboxMultiSelect.es6
+  // File: src/scripts/form/field/combobox/selection/ComboboxMultiSelection.es6
   //--------------------------------------------------------------------------------------------------------------------
 
   module
   /**
    * @ngdoc service
-   * @name ux.angular.service:ComboboxMultiSelect
+   * @name ux.angular.service:ComboboxMultiSelection
    *
    * @description
    *  // TODO:
    */
-  .service('ComboboxMultiSelect', function () {
+  .service('ComboboxMultiSelection', function () {
     return (
       /*#__PURE__*/
       function () {
@@ -359,28 +359,28 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
    * @description
    *  // TODO:
    */
-  .directive('uxComboboxMultiselect', ['ComboboxMultiSelect', function (ComboboxMultiSelect) {
+  .directive('uxComboboxMultiselect', ['ComboboxMultiSelection', function (ComboboxMultiSelection) {
     return {
       link: function link($scope, $element, $attributes, $controller) {
-        return $controller.setSelectService(new ComboboxMultiSelect());
+        return $controller.setSelectService(new ComboboxMultiSelection());
       },
       priority: 1,
       require: 'uxCombobox',
       restrict: 'A'
     };
   }]); //--------------------------------------------------------------------------------------------------------------------
-  // File: src/scripts/form/field/combobox/selection/ComboboxSingleSelect.es6
+  // File: src/scripts/form/field/combobox/selection/ComboboxSingleSelection.es6
   //--------------------------------------------------------------------------------------------------------------------
 
   module
   /**
    * @ngdoc service
-   * @name ux.angular.service:ComboboxSingleSelect
+   * @name ux.angular.service:ComboboxSingleSelection
    *
    * @description
    *  // TODO:
    */
-  .service('ComboboxSingleSelect', function () {
+  .service('ComboboxSingleSelection', function () {
     return (
       /*#__PURE__*/
       function () {

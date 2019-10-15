@@ -3,12 +3,12 @@ angular
 
   /**
    * @ngdoc service
-   * @name ux.angular.service:ComboboxSingleSelect
+   * @name ux.angular.service:ComboboxSingleSelection
    *
    * @description
    *  // TODO:
    */
-  .service('ComboboxSingleSelect', () => {
+  .service('ComboboxSingleSelection', () => {
     return class {
       constructor() {
         this.model = {

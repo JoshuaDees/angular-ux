@@ -11,11 +11,11 @@ angular
 .controller('Combobox', [
     '$scope',
     '$element',
-    'ComboboxSingleSelect',
+    'ComboboxSingleSelection',
   (
     $scope,
     $element,
-    ComboboxSingleSelect
+    ComboboxSingleSelection
   ) => {
     /**
      * Cancel opening the menu if clicking in the input and the combobox is editable.
@@ -71,7 +71,7 @@ angular
     };
 
     // Set the necessary services
-    $scope.setSelectService(new ComboboxSingleSelect());
+    $scope.setSelectService(new ComboboxSingleSelection());
 
     // Return the scope
     return $scope;

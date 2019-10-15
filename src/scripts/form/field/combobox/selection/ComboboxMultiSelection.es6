@@ -3,12 +3,12 @@ angular
 
   /**
    * @ngdoc service
-   * @name ux.angular.service:ComboboxMultiSelect
+   * @name ux.angular.service:ComboboxMultiSelection
    *
    * @description
    *  // TODO:
    */
-  .service('ComboboxMultiSelect', () => {
+  .service('ComboboxMultiSelection', () => {
     return class {
       constructor() {
         this.model = {
@@ -70,9 +70,9 @@ angular
    * @description
    *  // TODO:
    */
-  .directive('uxComboboxMultiselect', ['ComboboxMultiSelect', (ComboboxMultiSelect) => {
+  .directive('uxComboboxMultiselect', ['ComboboxMultiSelection', (ComboboxMultiSelection) => {
     return {
-      link: ($scope, $element, $attributes, $controller) => $controller.setSelectService(new ComboboxMultiSelect()),
+      link: ($scope, $element, $attributes, $controller) => $controller.setSelectService(new ComboboxMultiSelection()),
       priority: 1,
       require: 'uxCombobox',
       restrict: 'A'
