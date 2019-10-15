@@ -26,7 +26,7 @@ angular
         let items = menu.find(itemSelector);
 
         // Update the selected items lists
-        items.filter('[selected]').each((item) => {
+        items.filter('[selected]').each((index, item) => {
           selected.push(item);
           values.push($(item).attr('value'));
         });
@@ -41,7 +41,7 @@ angular
             break;
 
           case 1:
-            $scope.model.text = $(items[0]).html();
+            $scope.model.text = $(items.filter('[selected]')[0]).html();
             break;
 
           case items.length:
@@ -57,7 +57,9 @@ angular
   })
   .directive('uxMultiSelect', ['ComboboxMultiSelect', (ComboboxMultiSelect) => {
     return {
-      link: ($scope) => $scope.setSelectService(ComboboxMultiSelect),
+      link: ($scope, $element, $attributes, $controller) => $controller.setSelectService(ComboboxMultiSelect),
+      priority: 10,
+      require: 'uxCombobox',
       restrict: 'A'
     };
   }]);

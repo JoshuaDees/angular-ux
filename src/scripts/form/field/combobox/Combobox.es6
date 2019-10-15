@@ -67,6 +67,9 @@ angular
 
     // Set the necessary services
     $scope.setSelectService(ComboboxSingleSelect);
+
+    // Return the scope
+    return $scope;
   }])
   .directive('uxCombobox', () => {
     return {

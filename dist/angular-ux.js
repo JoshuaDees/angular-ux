@@ -181,7 +181,9 @@
     }; // Set the necessary services
 
 
-    $scope.setSelectService(ComboboxSingleSelect);
+    $scope.setSelectService(ComboboxSingleSelect); // Return the scope
+
+    return $scope;
   }]).directive('uxCombobox', function () {
     return {
       controller: 'ComboboxController',
@@ -238,7 +240,7 @@
 
         var items = menu.find(itemSelector); // Update the selected items lists
 
-        items.filter('[selected]').each(function (item) {
+        items.filter('[selected]').each(function (index, item) {
           selected.push(item);
           values.push($(item).attr('value'));
         }); // Update the model's value
@@ -251,7 +253,7 @@
             break;
 
           case 1:
-            $scope.model.text = $(items[0]).html();
+            $scope.model.text = $(items.filter('[selected]')[0]).html();
             break;
 
           case items.length:
@@ -266,9 +268,11 @@
     };
   }).directive('uxMultiSelect', ['ComboboxMultiSelect', function (ComboboxMultiSelect) {
     return {
-      link: function link($scope) {
-        return $scope.setSelectService(ComboboxMultiSelect);
+      link: function link($scope, $element, $attributes, $controller) {
+        return $controller.setSelectService(ComboboxMultiSelect);
       },
+      priority: 10,
+      require: 'uxCombobox',
       restrict: 'A'
     };
   }]); //--------------------------------------------------------------------------------------------------------------------
