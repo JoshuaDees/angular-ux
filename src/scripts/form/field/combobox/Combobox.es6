@@ -1,6 +1,13 @@
 angular
-  .module('angular-ux')
-  .controller('ComboboxController', [
+  .module('ux.angular')
+  /**
+   * @ngdoc controller
+   * @name ux.angular.controller:Combobox
+   *
+   * @description
+   *   Defines the controller that runs the {@link angular-ux.directive:uxCombobox Combobox} directive.
+   */
+.controller('Combobox', [
     '$scope',
     '$element',
     'ComboboxSingleSelect',
@@ -9,17 +16,6 @@ angular
     $element,
     ComboboxSingleSelect
   ) => {
-    // Define some scope variables
-    $scope.attributes = {};
-    $scope.model = {};
-    $scope.options = {};
-
-    // Declare some additional directives
-    $scope.ngModel = null;
-
-    // Declare some additional services
-    $scope.selectService = null;
-
     /**
      * Cancel opening the menu if clicking in the input and the combobox is editable.
      */
@@ -50,7 +46,7 @@ angular
 
       // Update the ng-model if defined
       if ($scope.ngModel) {
-        $scope.ngModel.$setViewValue($scope.model.value);
+        $scope.ngModel.$setViewValue($scope.selectService.model.value);
       }
 
       // Apply the changes if needed
@@ -58,12 +54,14 @@ angular
     };
 
     /**
+     * Sets the editable service.
+     */
+    $scope.setEditableService = (editableService) => $scope.editableService = new editableService($scope);
+
+    /**
      * Sets the select service.
      */
-    $scope.setSelectService = (selectService) => {
-      // Set the new select service.
-      $scope.selectService = new selectService($scope, '.ux-menuitem');
-    };
+    $scope.setSelectService = (selectService) => $scope.selectService = new selectService($scope, '.ux-menuitem');
 
     // Set the necessary services
     $scope.setSelectService(ComboboxSingleSelect);
@@ -71,9 +69,22 @@ angular
     // Return the scope
     return $scope;
   }])
-  .directive('uxCombobox', () => {
+  /**
+   * @ngdoc directive
+   * @name ux.angular.directive:uxCombobox
+   *
+   * @description
+   *   Defines the Combobox directive.
+
+   * @example
+   *
+   *  <ux-combobox [name] [ng-model="{model}"] [placeholder="{placeholder}"] [required] [ux-combobox-editable] [ux-combobox-multiselect]>
+   *    <!-- Options -->
+   *  </ux-combobox>
+   */
+.directive('uxCombobox', () => {
     return {
-      controller: 'ComboboxController',
+      controller: 'Combobox',
       link: ($scope, $element, $attributes, ngModel) => $scope.initialize($attributes, ngModel),
       replace: true,
       require: '?ngModel',

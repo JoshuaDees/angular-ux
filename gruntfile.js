@@ -12,7 +12,7 @@ module.exports = function(grunt) {
     'angular-builder': {
       options: {
         externalModules: ['ngSanitize'],
-        mainModule: '<%= pkg.name %>',
+        mainModule: 'ux.angular',
         releaseBuild: {
           moduleFooter: '\n'
         }
@@ -66,7 +66,7 @@ module.exports = function(grunt) {
             removeScriptTypeAttributes: true,
             removeStyleLinkTypeAttributes: true
           },
-          module: '<%= pkg.name %>',
+          module: 'ux.angular',
           quotes: 'single',
           url: function(url) {
             return url

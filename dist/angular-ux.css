@@ -305,13 +305,13 @@
   content: "\f0dd";
   font: 900 10pt "Font Awesome 5 Free";
 }
-.ux-combobox[ux-editable] .ux-trigger {
+.ux-combobox[ux-combobox-editable] .ux-trigger {
   border-left: 1px solid #969696;
 }
 .ux-combobox:hover, .ux-combobox.ui-pressed {
   border: 1px solid black;
 }
-.ux-combobox:hover[ux-editable] .ux-trigger, .ux-combobox.ui-pressed[ux-editable] .ux-trigger {
+.ux-combobox:hover[ux-combobox-editable] .ux-trigger, .ux-combobox.ui-pressed[ux-combobox-editable] .ux-trigger {
   border-left: 1px solid black;
 }
 .ux-combobox:focus, .ux-combobox.ui-pressed {

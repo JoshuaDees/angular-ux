@@ -1,6 +1,6 @@
 <span class="ui-cols ux-combobox" tabindex="0" ux-dropdown="select(menu, item, true)">
-  <input name="{{ attributes.name }}" ng-model="model.value" ng-required="attributes.required" type="hidden" />
-  <input class="ui-flex ux-combobox-value" ng-click="cancelOpen($event)" ng-readonly="!options.editable" ng-model="model.text" placeholder="{{ attributes.placeholder || ' ' }}" />
+  <input name="{{ attributes.name }}" ng-model="selectService.model.value" ng-required="attributes.required" type="hidden" />
+  <input class="ui-flex ux-combobox-value" ng-click="cancelOpen($event)" ng-readonly="!editableService" ng-model="selectService.model.text" placeholder="{{ attributes.placeholder || ' ' }}" />
   <span class="ux-trigger"></span>
   <ux-menu><div ng-transclude></div></ux-menu>
 </span>

@@ -1,5 +1,5 @@
 angular
-  .module('angular-ux')
+  .module('ux.angular')
   .controller('DropdownController', ['$scope', ($scope) => {
     // Element variables
     let $body = angular.element(document.body);

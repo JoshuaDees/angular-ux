@@ -1,11 +1,11 @@
 angular
-  .module('angular-ux')
+  .module('ux.angular')
   .service('ComboboxMultiSelect', () => {
     return function($scope, itemSelector) {
       let selected = [];
       let values = [];
 
-      $scope.model = {
+      this.model = {
         value: undefined,
         text: undefined
       };
@@ -32,33 +32,33 @@ angular
         });
 
         // Update the model's value
-        $scope.model.value = values.join(', ');
+        this.model.value = values.join(', ');
 
         // Update the model's text
         switch(selected.length) {
           case 0:
-            $scope.model.text = '';
+            this.model.text = '';
             break;
 
           case 1:
-            $scope.model.text = $(items.filter('[selected]')[0]).html();
+            this.model.text = $(items.filter('[selected]')[0]).html();
             break;
 
           case items.length:
-            $scope.model.text = '(All Items Selected)';
+            this.model.text = '(All Items Selected)';
             break;
 
           default:
-            $scope.model.text = '(Multiple Items Selected)';
+            this.model.text = '(Multiple Items Selected)';
             break;
         }
       };
     };
   })
-  .directive('uxMultiSelect', ['ComboboxMultiSelect', (ComboboxMultiSelect) => {
+  .directive('uxCOmboboxMultiselect', ['ComboboxMultiSelect', (ComboboxMultiSelect) => {
     return {
       link: ($scope, $element, $attributes, $controller) => $controller.setSelectService(ComboboxMultiSelect),
-      priority: 10,
+      priority: 1,
       require: 'uxCombobox',
       restrict: 'A'
     };

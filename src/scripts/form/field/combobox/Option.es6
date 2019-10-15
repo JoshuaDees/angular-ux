@@ -1,5 +1,5 @@
 angular
-  .module('angular-ux')
+  .module('ux.angular')
   .directive('uxOption', () => {
     return {
       link: ($scope, $element, $attributes) => {

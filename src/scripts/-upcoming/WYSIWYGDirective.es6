@@ -1,4 +1,4 @@
-angular.module('angular-ux')
+angular.module('ux.angular')
   .directive('uxWysiwyg', () => {
     return {
       controller: 'WYSIWYGController',

@@ -1,7 +1,7 @@
 "use strict";
 
 //====================================================================================================================
-// Module:    angular-ux
+// Module:    ux.angular
 // Optimized: Yes
 // File:      src/scripts/angular-ux.es6
 //====================================================================================================================
@@ -123,19 +123,18 @@
   // File: src/scripts/form/field/combobox/Combobox.es6
   //--------------------------------------------------------------------------------------------------------------------
 
-  module.controller('ComboboxController', ['$scope', '$element', 'ComboboxSingleSelect', function ($scope, $element, ComboboxSingleSelect) {
-    // Define some scope variables
-    $scope.attributes = {};
-    $scope.model = {};
-    $scope.options = {}; // Declare some additional directives
-
-    $scope.ngModel = null; // Declare some additional services
-
-    $scope.selectService = null;
+  module
+  /**
+   * @ngdoc controller
+   * @name ux.angular.controller:Combobox
+   *
+   * @description
+   *   Defines the controller that runs the {@link angular-ux.directive:uxCombobox Combobox} directive.
+   */
+  .controller('Combobox', ['$scope', '$element', 'ComboboxSingleSelect', function ($scope, $element, ComboboxSingleSelect) {
     /**
      * Cancel opening the menu if clicking in the input and the combobox is editable.
      */
-
     $scope.cancelOpen = function (event) {
       // If the combobox is editable, stop the default event propagation
       if ($scope.options.editable) {
@@ -164,11 +163,19 @@
       $scope.selectService.select(menu, item); // Update the ng-model if defined
 
       if ($scope.ngModel) {
-        $scope.ngModel.$setViewValue($scope.model.value);
+        $scope.ngModel.$setViewValue($scope.selectService.model.value);
       } // Apply the changes if needed
 
 
       apply && $scope.$apply();
+    };
+    /**
+     * Sets the editable service.
+     */
+
+
+    $scope.setEditableService = function (editableService) {
+      return $scope.editableService = new editableService($scope);
     };
     /**
      * Sets the select service.
@@ -176,17 +183,29 @@
 
 
     $scope.setSelectService = function (selectService) {
-      // Set the new select service.
-      $scope.selectService = new selectService($scope, '.ux-menuitem');
+      return $scope.selectService = new selectService($scope, '.ux-menuitem');
     }; // Set the necessary services
 
 
     $scope.setSelectService(ComboboxSingleSelect); // Return the scope
 
     return $scope;
-  }]).directive('uxCombobox', function () {
+  }])
+  /**
+   * @ngdoc directive
+   * @name ux.angular.directive:uxCombobox
+   *
+   * @description
+   *   Defines the Combobox directive.
+     * @example
+   *
+   *  <ux-combobox [name] [ng-model="{model}"] [placeholder="{placeholder}"] [required] [ux-combobox-editable] [ux-combobox-multiselect]>
+   *    <!-- Options -->
+   *  </ux-combobox>
+   */
+  .directive('uxCombobox', function () {
     return {
-      controller: 'ComboboxController',
+      controller: 'Combobox',
       link: function link($scope, $element, $attributes, ngModel) {
         return $scope.initialize($attributes, ngModel);
       },
@@ -214,14 +233,31 @@
       transclude: true
     };
   }); //--------------------------------------------------------------------------------------------------------------------
-  // File: src/scripts/form/field/combobox/services/ComboboxMultiSelect.es6
+  // File: src/scripts/form/field/combobox/editable/ComboboxEditable.es6
+  //--------------------------------------------------------------------------------------------------------------------
+
+  module.service('ComboboxEditable', function () {
+    return function ($scope) {};
+  }).directive('uxComboboxEditable', ['ComboboxEditable', function (ComboboxEditable) {
+    return {
+      link: function link($scope, $element, $attributes, $controller) {
+        return $controller.setEditableService(ComboboxEditable);
+      },
+      priority: 1,
+      require: 'uxCombobox',
+      restrict: 'A'
+    };
+  }]); //--------------------------------------------------------------------------------------------------------------------
+  // File: src/scripts/form/field/combobox/selection/ComboboxMultiSelect.es6
   //--------------------------------------------------------------------------------------------------------------------
 
   module.service('ComboboxMultiSelect', function () {
     return function ($scope, itemSelector) {
+      var _this = this;
+
       var selected = [];
       var values = [];
-      $scope.model = {
+      this.model = {
         value: undefined,
         text: undefined
       };
@@ -245,51 +281,53 @@
           values.push($(item).attr('value'));
         }); // Update the model's value
 
-        $scope.model.value = values.join(', '); // Update the model's text
+        _this.model.value = values.join(', '); // Update the model's text
 
         switch (selected.length) {
           case 0:
-            $scope.model.text = '';
+            _this.model.text = '';
             break;
 
           case 1:
-            $scope.model.text = $(items.filter('[selected]')[0]).html();
+            _this.model.text = $(items.filter('[selected]')[0]).html();
             break;
 
           case items.length:
-            $scope.model.text = '(All Items Selected)';
+            _this.model.text = '(All Items Selected)';
             break;
 
           default:
-            $scope.model.text = '(Multiple Items Selected)';
+            _this.model.text = '(Multiple Items Selected)';
             break;
         }
       };
     };
-  }).directive('uxMultiSelect', ['ComboboxMultiSelect', function (ComboboxMultiSelect) {
+  }).directive('uxCOmboboxMultiselect', ['ComboboxMultiSelect', function (ComboboxMultiSelect) {
     return {
       link: function link($scope, $element, $attributes, $controller) {
         return $controller.setSelectService(ComboboxMultiSelect);
       },
-      priority: 10,
+      priority: 1,
       require: 'uxCombobox',
       restrict: 'A'
     };
   }]); //--------------------------------------------------------------------------------------------------------------------
-  // File: src/scripts/form/field/combobox/services/ComboboxSingleSelect.es6
+  // File: src/scripts/form/field/combobox/selection/ComboboxSingleSelect.es6
   //--------------------------------------------------------------------------------------------------------------------
 
   module.service('ComboboxSingleSelect', function () {
     return function ($scope) {
-      $scope.model = {
+      var _this2 = this;
+
+      this.model = {
         value: undefined,
         text: undefined
       };
 
       this.select = function (menu, item) {
         // Update the model
-        $scope.model.value = item.attr('value');
-        $scope.model.text = item.html();
+        _this2.model.value = item.attr('value');
+        _this2.model.text = item.html();
 
         if (menu) {
           menu.find('[selected]').removeAttr('selected');
@@ -399,18 +437,6 @@
       restrict: 'A'
     };
   }); //--------------------------------------------------------------------------------------------------------------------
-  // File: src/scripts/form/field/Editable.es6
-  //--------------------------------------------------------------------------------------------------------------------
-
-  module.directive('uxEditable', [function () {
-    return {
-      link: function link($scope, $element, $attributes, $controller) {
-        return $controller.options.editable = true;
-      },
-      require: 'uxCombobox',
-      restrict: 'A'
-    };
-  }]); //--------------------------------------------------------------------------------------------------------------------
   // File: src/scripts/menu/Menu.es6
   //--------------------------------------------------------------------------------------------------------------------
 
@@ -438,8 +464,8 @@
       transclude: true
     };
   });
-})(angular.module('angular-ux', ['ngSanitize']));
-angular.module('angular-ux').run(['$templateCache', function($templateCache) {
+})(angular.module('ux.angular', ['ngSanitize']));
+angular.module('ux.angular').run(['$templateCache', function($templateCache) {
   'use strict';
 
   $templateCache.put('-upcoming/ColorPickerTemplate',
@@ -453,7 +479,7 @@ angular.module('angular-ux').run(['$templateCache', function($templateCache) {
 
 
   $templateCache.put('form/field/combobox/Combobox',
-    '<span class="ui-cols ux-combobox" tabindex=0 ux-dropdown="select(menu, item, true)"><input name="{{ attributes.name }}" ng-model=model.value ng-required=attributes.required type=hidden /> <input class="ui-flex ux-combobox-value" ng-click=cancelOpen($event) ng-readonly=!options.editable ng-model=model.text placeholder="{{ attributes.placeholder || \' \' }}"/> <span class=ux-trigger></span><ux-menu><div ng-transclude></div></ux-menu></span>'
+    '<span class="ui-cols ux-combobox" tabindex=0 ux-dropdown="select(menu, item, true)"><input name="{{ attributes.name }}" ng-model=selectService.model.value ng-required=attributes.required type=hidden /> <input class="ui-flex ux-combobox-value" ng-click=cancelOpen($event) ng-readonly=!editableService ng-model=selectService.model.text placeholder="{{ attributes.placeholder || \' \' }}"/> <span class=ux-trigger></span><ux-menu><div ng-transclude></div></ux-menu></span>'
   );
 
 

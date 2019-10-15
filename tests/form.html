@@ -19,7 +19,7 @@
     </style>
     <script>
       angular
-        .module('angular-ux-tests', ['angular-ux'])
+        .module('angular-ux-tests', ['ux.angular'])
         .controller('testController', ['$scope', ($scope) => {}]);
     </script>
   </head>
@@ -58,7 +58,7 @@
       </div>
       <div>
         <label>Multi-Select:</label>
-        <ux-combobox ng-model="combobox_standard_multiselect" ux-multi-select>
+        <ux-combobox ng-model="combobox_standard_multiselect" ux-combobox-multiselect>
           <ux-option value="1st">First</ux-option>
           <ux-option value="2nd">Second</ux-option>
           <ux-option value="3rd">Third</ux-option>
@@ -68,7 +68,7 @@
       </div>
       <div>
         <label>Editable Combobox:</label>
-        <ux-combobox ng-model="combobox_editable" ux-editable>
+        <ux-combobox ng-model="combobox_editable" ux-combobox-editable>
           <ux-option value="1st">First</ux-option>
           <ux-option value="2nd">Second</ux-option>
           <ux-option value="3rd">Third</ux-option>
@@ -78,7 +78,7 @@
       </div>
       <div>
         <label>Placeholder:</label>
-        <ux-combobox ng-model="combobox_editable_placeholder" placeholder="Select One..." ux-editable>
+        <ux-combobox ng-model="combobox_editable_placeholder" placeholder="Select One..." ux-combobox-editable>
           <ux-option value="1st">First</ux-option>
           <ux-option value="2nd">Second</ux-option>
           <ux-option value="3rd">Third</ux-option>
@@ -88,17 +88,17 @@
       </div>
       <div>
         <label>Initial Selection:</label>
-        <ux-combobox ng-model="combobox_editable_initial" placeholder="Select One..." ux-editable>
-          <ux-option value="1st" selected>First</ux-option>
+        <ux-combobox ng-model="combobox_editable_initial" placeholder="Select One..." ux-combobox-editable>
+          <ux-option value="1st">First</ux-option>
           <ux-option value="2nd">Second</ux-option>
-          <ux-option value="3rd">Third</ux-option>
+          <ux-option value="3rd" selected>Third</ux-option>
           <ux-option value="4th">Fourth</ux-option>
         </ux-combobox>
         <span>Value: [{{ combobox_editable_initial }}]</span>
       </div>
       <div>
         <label>Multi-Select:</label>
-        <ux-combobox ng-model="combobox_editable_multiselect" ux-editable ux-multi-select>
+        <ux-combobox ng-model="combobox_editable_multiselect" ux-combobox-editable ux-combobox-multiselect>
           <ux-option value="1st">First</ux-option>
           <ux-option value="2nd">Second</ux-option>
           <ux-option value="3rd">Third</ux-option>

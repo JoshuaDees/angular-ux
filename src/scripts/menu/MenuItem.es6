@@ -1,5 +1,5 @@
 angular
-  .module('angular-ux')
+  .module('ux.angular')
   .directive('uxMenuitem', () => {
     return {
       link: ($scope, $element, $attributes) => {

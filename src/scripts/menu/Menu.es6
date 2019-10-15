@@ -1,5 +1,5 @@
 angular
-  .module('angular-ux')
+  .module('ux.angular')
   .directive('uxMenu', () => {
     return {
       replace: true,

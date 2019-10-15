@@ -1,4 +1,4 @@
-angular.module('angular-ux')
+angular.module('ux.angular')
   .controller('WYSIWYGController', ['$scope', $scope => {
     // Initialization function
     $scope.init = $element => document.execCommand('DefaultParagraphSeparator', false, 'p');

@@ -32,7 +32,7 @@
     }
   }
 
-  &[ux-editable] .ux-trigger {
+  &[ux-combobox-editable] .ux-trigger {
     border-left: 1px solid $color-grey-dark;
   }
 
@@ -40,7 +40,7 @@
   &.ui-pressed {
     border: 1px solid $color-black;
 
-    &[ux-editable] .ux-trigger {
+    &[ux-combobox-editable] .ux-trigger {
       border-left: 1px solid $color-black;
     }
   }
