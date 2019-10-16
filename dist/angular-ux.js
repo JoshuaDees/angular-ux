@@ -139,19 +139,8 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
    */
   .controller('Combobox', ['$scope', '$element', 'ComboboxSingleSelection', function ($scope, $element, ComboboxSingleSelection) {
     /**
-     * Cancel opening the menu if clicking in the input and the combobox is editable.
-     */
-    $scope.cancelOpen = function (event) {
-      // If the combobox is editable, stop the default event propagation
-      if ($scope.editableService) {
-        event.stopPropagation();
-      }
-    };
-    /**
      * Initializes the controller.
      */
-
-
     $scope.initialize = function (attributes, ngModel) {
       // Store the attributes to the scope
       $scope.attributes = attributes; // Store the ng-model controller
@@ -560,7 +549,7 @@ angular.module('ux.angular').run(['$templateCache', function($templateCache) {
 
 
   $templateCache.put('form/field/combobox/Combobox',
-    '<span class="ui-cols ux-combobox" tabindex=0 ux-dropdown="select(menu, item, true)"><input name="{{ attributes.name }}" ng-model=selectService.model.value ng-required=attributes.required type=hidden /> <input class="ui-flex ux-combobox-value" ng-click=cancelOpen($event) ng-readonly=!editableService ng-model=selectService.model.text placeholder="{{ attributes.placeholder || \' \' }}"/> <span class=ux-trigger></span><ux-menu><div ng-transclude></div></ux-menu></span>'
+    '<span class="ui-cols ux-combobox" tabindex=0 ux-dropdown="select(menu, item, true)"><input name="{{ attributes.name }}" ng-model=selectService.model.value ng-required=attributes.required type=hidden /> <input class="ui-flex ux-combobox-value" ng-click="editableService && $event.stopPropagation()" ng-readonly=!editableService ng-model=selectService.model.text placeholder="{{ attributes.placeholder || \' \' }}"/> <span class=ux-trigger></span><ux-menu><div ng-transclude></div></ux-menu></span>'
   );
 
 

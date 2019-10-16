@@ -18,16 +18,6 @@ angular
     ComboboxSingleSelection
   ) => {
     /**
-     * Cancel opening the menu if clicking in the input and the combobox is editable.
-     */
-    $scope.cancelOpen = (event) => {
-      // If the combobox is editable, stop the default event propagation
-      if ($scope.editableService) {
-        event.stopPropagation();
-      }
-    };
-
-    /**
      * Initializes the controller.
      */
     $scope.initialize = (attributes, ngModel) => {
