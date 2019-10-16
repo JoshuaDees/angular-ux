@@ -4,6 +4,7 @@
     <meta charset="UTF-8" />
     <title>Angular-UX - Form Elements</title>
     <link rel="stylesheet" href="../assets/font-awesome/css/font-awesome.css" />
+    <script src="../assets/lodash/lodash.js"></script>
     <script src="../assets/jquery/jquery.js"></script>
     <script src="../assets/angular/angular.js"></script>
     <script src="../assets/angular/angular-sanitize.js"></script>
@@ -58,11 +59,11 @@
       </div>
       <div>
         <label>Multi-Select:</label>
-        <ux-combobox ng-model="combobox_standard_multiselect" ux-combobox-multiselect>
+        <ux-combobox ng-model="combobox_standard_multiselect" ux-combobox-multiselect="{ 'separator': ';' }">
           <ux-option value="1st">First</ux-option>
           <ux-option value="2nd">Second</ux-option>
-          <ux-option value="3rd">Third</ux-option>
-          <ux-option value="4th">Fourth</ux-option>
+          <ux-option value="3rd" >Third</ux-option>
+          <ux-option value="4th" >Fourth</ux-option>
         </ux-combobox>
         <span>Value: [{{ combobox_standard_multiselect }}]</span>
       </div>

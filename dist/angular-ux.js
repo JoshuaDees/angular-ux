@@ -296,12 +296,18 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
     return (
       /*#__PURE__*/
       function () {
-        function _class() {
+        function _class(options) {
           _classCallCheck(this, _class);
 
+          this.options = _.merge({
+            noItemsText: '',
+            multipleItemsText: '(Multiple Items Selected)',
+            allItemsText: '(All Items Selected)',
+            separator: ','
+          }, options);
           this.model = {
             value: undefined,
-            text: undefined
+            text: this.options.noItemsText
           };
         }
 
@@ -326,11 +332,11 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
               values.push($(item).attr('value'));
             }); // Update the model's value
 
-            this.model.value = values.join(', '); // Update the model's text
+            this.model.value = values.join(this.options.separator); // Update the model's text
 
             switch (selected.length) {
               case 0:
-                this.model.text = '';
+                this.model.text = this.options.noItemsText;
                 break;
 
               case 1:
@@ -338,11 +344,11 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
                 break;
 
               case items.length:
-                this.model.text = '(All Items Selected)';
+                this.model.text = this.options.allItemsText;
                 break;
 
               default:
-                this.model.text = '(Multiple Items Selected)';
+                this.model.text = this.options.multipleItemsText;
                 break;
             }
           }
@@ -362,7 +368,7 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
   .directive('uxComboboxMultiselect', ['ComboboxMultiSelection', function (ComboboxMultiSelection) {
     return {
       link: function link($scope, $element, $attributes, $controller) {
-        return $controller.setSelectService(new ComboboxMultiSelection());
+        return $controller.setSelectService(new ComboboxMultiSelection($scope.$eval($attributes.uxComboboxMultiselect)));
       },
       priority: 1,
       require: 'uxCombobox',
