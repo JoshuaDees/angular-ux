@@ -11,7 +11,8 @@
     "@fortawesome/fontawesome-free": "^5.11.1",
     "angular": "^1.7.8",
     "angular-sanitize": "^1.7.8",
-    "jquery": "^3.4.1"
+    "jquery": "^3.4.1",
+    "lodash": "^4.17.15"
   },
   "devDependencies": {
     "@babel/core": "^7.6.0",
