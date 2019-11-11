@@ -10,7 +10,9 @@ angular
    */
   .service('ComboboxMultiSelection', () => {
     return class {
-      constructor(options) {
+      constructor(combobox, options) {
+        this.combobox = combobox;
+
         this.options = _.merge({
           noItemsText: '',
           multipleItemsText: '(Multiple Items Selected)',
@@ -18,47 +20,32 @@ angular
           separator: ','
         }, options);
 
+        this.selected = [];
+
         this.model = {
           value: undefined,
           text: this.options.noItemsText
         };
       }
 
-      select(menu, item) {
-        // Toggle the selected attribute of the item
-        if (item.attr('selected')) {
-          item.removeAttr('selected');
-        } else {
-          item.attr('selected', true);
-        }
-
-        // Reset the selected items lists
-        let selected = [];
-        let values = [];
-
-        // Find the items in the list
-        let items = menu.find(this.itemSelector);
-
-        // Update the selected items lists
-        items.filter('[selected]').each((index, item) => {
-          selected.push(item);
-          values.push($(item).attr('value'));
-        });
+      select(menu = this.combobox.find('ux-menu, .ux-menu'), option) {
+        // Update the list of selected values
+        this.selected = _.xor(this.selected, [option.attr('value')]);
 
         // Update the model's value
-        this.model.value = values.join(this.options.separator);
+        this.model.value = this.selected.join(this.options.separator);
 
         // Update the model's text
-        switch(selected.length) {
+        switch(this.selected.length) {
           case 0:
             this.model.text = this.options.noItemsText;
             break;
 
           case 1:
-            this.model.text = $(items.filter('[selected]')[0]).html();
+            this.model.text = this.selected[0];
             break;
 
-          case items.length:
+          case menu.find('.ux-menuitem').length:
             this.model.text = this.options.allItemsText;
             break;
 
@@ -66,7 +53,11 @@ angular
             this.model.text = this.options.multipleItemsText;
             break;
         }
-      };
+      }
+
+      isSelected(option) {
+        return this.selected.includes(option.attr('value'));
+      }
     };
   })
 
@@ -80,7 +71,7 @@ angular
   .directive('uxComboboxMultiselect', ['ComboboxMultiSelection', (ComboboxMultiSelection) => {
     return {
       link: ($scope, $element, $attributes, $controller) => $controller.setSelectService(
-        new ComboboxMultiSelection($scope.$eval($attributes.uxComboboxMultiselect))
+        new ComboboxMultiSelection($element, $scope.$eval($attributes.uxComboboxMultiselect))
       ),
       priority: 1,
       require: 'uxCombobox',

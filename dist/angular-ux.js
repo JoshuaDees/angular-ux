@@ -229,12 +229,16 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
   .directive('uxOption', function () {
     return {
       link: function link($scope, $element, $attributes) {
+        // Define some scope properties
+        $scope.$element = $element; // Auto-select the option if defined
+
         if ($attributes.selected !== undefined) {
-          $scope.$parent.select(null, $element);
+          $scope.$parent.$parent.select(undefined, $element);
         }
       },
       replace: true,
       restrict: 'E',
+      scope: true,
       templateUrl: 'form/field/combobox/Option',
       transclude: true
     };
@@ -285,15 +289,17 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
     return (
       /*#__PURE__*/
       function () {
-        function _class(options) {
+        function _class(combobox, options) {
           _classCallCheck(this, _class);
 
+          this.combobox = combobox;
           this.options = _.merge({
             noItemsText: '',
             multipleItemsText: '(Multiple Items Selected)',
             allItemsText: '(All Items Selected)',
             separator: ','
           }, options);
+          this.selected = [];
           this.model = {
             value: undefined,
             text: this.options.noItemsText
@@ -302,37 +308,24 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
 
         _createClass(_class, [{
           key: "select",
-          value: function select(menu, item) {
-            // Toggle the selected attribute of the item
-            if (item.attr('selected')) {
-              item.removeAttr('selected');
-            } else {
-              item.attr('selected', true);
-            } // Reset the selected items lists
+          value: function select() {
+            var menu = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : this.combobox.find('ux-menu, .ux-menu');
+            var option = arguments.length > 1 ? arguments[1] : undefined;
+            // Update the list of selected values
+            this.selected = _.xor(this.selected, [option.attr('value')]); // Update the model's value
 
+            this.model.value = this.selected.join(this.options.separator); // Update the model's text
 
-            var selected = [];
-            var values = []; // Find the items in the list
-
-            var items = menu.find(this.itemSelector); // Update the selected items lists
-
-            items.filter('[selected]').each(function (index, item) {
-              selected.push(item);
-              values.push($(item).attr('value'));
-            }); // Update the model's value
-
-            this.model.value = values.join(this.options.separator); // Update the model's text
-
-            switch (selected.length) {
+            switch (this.selected.length) {
               case 0:
                 this.model.text = this.options.noItemsText;
                 break;
 
               case 1:
-                this.model.text = $(items.filter('[selected]')[0]).html();
+                this.model.text = this.selected[0];
                 break;
 
-              case items.length:
+              case menu.find('.ux-menuitem').length:
                 this.model.text = this.options.allItemsText;
                 break;
 
@@ -340,6 +333,11 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
                 this.model.text = this.options.multipleItemsText;
                 break;
             }
+          }
+        }, {
+          key: "isSelected",
+          value: function isSelected(option) {
+            return this.selected.includes(option.attr('value'));
           }
         }]);
 
@@ -357,7 +355,7 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
   .directive('uxComboboxMultiselect', ['ComboboxMultiSelection', function (ComboboxMultiSelection) {
     return {
       link: function link($scope, $element, $attributes, $controller) {
-        return $controller.setSelectService(new ComboboxMultiSelection($scope.$eval($attributes.uxComboboxMultiselect)));
+        return $controller.setSelectService(new ComboboxMultiSelection($element, $scope.$eval($attributes.uxComboboxMultiselect)));
       },
       priority: 1,
       require: 'uxCombobox',
@@ -390,15 +388,15 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
 
         _createClass(_class2, [{
           key: "select",
-          value: function select(menu, item) {
+          value: function select(menu, option) {
             // Update the model
-            this.model.value = item.attr('value');
-            this.model.text = item.html();
-
-            if (menu) {
-              menu.find('[selected]').removeAttr('selected');
-              item.attr('selected', true);
-            }
+            this.model.value = option.attr('value');
+            this.model.text = option.html();
+          }
+        }, {
+          key: "isSelected",
+          value: function isSelected(option) {
+            return option.attr('value') === this.model.value;
           }
         }]);
 
@@ -554,7 +552,7 @@ angular.module('ux.angular').run(['$templateCache', function($templateCache) {
 
 
   $templateCache.put('form/field/combobox/Option',
-    '<li class="ux-menuitem ux-option" ng-transclude></li>'
+    '<li class="ux-menuitem ux-option" ng-transclude ng-selected=$parent.$parent.selectService.isSelected($element)></li>'
   );
 
 

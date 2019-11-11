@@ -17,15 +17,14 @@ angular
         };
       }
 
-      select(menu, item) {
+      select(menu, option) {
         // Update the model
-        this.model.value = item.attr('value');
-        this.model.text = item.html();
+        this.model.value = option.attr('value');
+        this.model.text = option.html();
+      }
 
-        if (menu) {
-          menu.find('[selected]').removeAttr('selected');
-          item.attr('selected', true);
-        }
-      };
+      isSelected(option) {
+        return option.attr('value') === this.model.value;
+      }
     };
   });
